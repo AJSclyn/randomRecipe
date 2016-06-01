@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html ng-app="randomRecipe">
+<html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
         <!--Load angularjs-->
         <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <h1>Random Recipe Generator!</h1>
     </head>
-    <body>
-        <div class="pageHeader">Form Validator</div>
-        <div class="login">
-            <form name="loginForm" ng-submit="submitForm(user)" ng-controller="loginCtrl" novalidate>
-                <input ng-model="user.email" type="email" required>
-                <input ng-model="user.password" type="password" required>
-                <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
-                {{loginForm.$valid}}
-            </form>
-        </div>
+    <body ng-app="randomRecipe">
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+
     </body>
     <footer>AJ Saclayan</footer>
 </html>
