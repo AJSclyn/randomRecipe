@@ -5,9 +5,12 @@
   "main": "app.js",
   "dependencies": {
     "bower": "^1.7.9",
-    "angular": "^1.5.6"
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
