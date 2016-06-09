@@ -1,0 +1,15 @@
+<div ng-controller="randomRecipeCtrl">
+    <form class="recipeForm" ng-submit="randomRecipe()">
+        <label><p>Food Options</p>
+        <input type="checkbox" ng-model="food" ng-true-value="'chicken'" ng-false-value=""/>Chicken <br>
+        <input type="checkbox" ng-model="food" ng-true-value="'beef'" ng-false-value=""/>Beef
+            </label></br>
+        <pre ng-repeat="recipes in swag.data.recipes">
+            {{recipes.title}}
+        </pre>
+        <!--<pre>{{food.beef}}</pre>-->
+        <button type="submit">Randomize!</button>
+    </form>
+</div>
+
+<!--ng-repeat="recipes in swag.data.recipes"-->

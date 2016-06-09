@@ -6,13 +6,13 @@
 
         <!--Load angularjs-->
         <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/angular-route/angular-route.min.js"></script>
-        <script src="app/app.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+        <script src="app.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <h1>Random Recipe Generator!</h1>
     </head>
     <body ng-app="myApp">
-        <ng-view></ng-view>
+        <ui-view></ui-view>
     </body>
     <footer>AJ Saclayan</footer>
 </html>
