@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <header>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -9,10 +9,24 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
         <script src="app.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <h1>Random Recipe Generator!</h1>
-    </head>
+    </header>
     <body ng-app="myApp">
+        <div id="header">
+            <h1>Random Recipe Generator!</h1>
+            <div id="nav">
+                <ul>
+                    <li><a ui-sref="home">Home</a></li>
+                    <li><a ui-sref="about">About</a></li>
+                    <li><a ui-sref="contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    <div id="content">
         <ui-view></ui-view>
+    </div>
     </body>
-    <footer>AJ Saclayan</footer>
+    <div id="footer">
+        AJ Saclayan
+    </div>
 </html>
+

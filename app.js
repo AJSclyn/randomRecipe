@@ -4,45 +4,30 @@ angular.module('myApp', ['ui.router'])
     function($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home',
         {
-            url:'/signIn',
-            templateUrl: 'templates/signIn.html',
-            controller: 'AppCtrl',
-            controllerAs: 'app'
+            url:'/home',
+            templateUrl:'templates/home.html',
+            controller: 'homeCtrl',
+            controllerAs: 'home'
         })
-        .state('/',
+        .state('about',
         {
-            url:'/randomRecipe',
-            templateUrl:'templates/randomRecipe.html',
-            controller: 'randomRecipeCtrl',
-            controllerAs: 'randomRecipe'
+            url: '/about',
+            templateUrl: 'templates/about.html',
+            controller: 'aboutCtrl',
+            controllerAs: 'about'
+        })
+        .state('contact',
+        {
+            url: '/contact',
+            templateUrl: 'templates/contact.html',
+            controller: 'contactCtrl',
+            controllerAs: 'contact'
         });
-    $urlRouterProvider.otherwise('/randomRecipe')
-}])
-// .controller('loginCtrl', function loginController($scope){
-//     var verifyUser = {
-//         "username": "aj@swag.com",
-//         "password": "swag"
-//     };
-//
-//     $scope.submitForm = function(user){
-//         if(user.email === verifyUser.username && user.password === verifyUser.password)
-//             alert("Yay");
-//         else
-//             alert("Shit");
-//     };
-// })
-//
-// .controller('AppCtrl', function(){
-//    var self = this;
-//     self.message = "The app routing is working";
-// })
 
-.controller('randomRecipeCtrl', ['$scope', '$http',
+    $urlRouterProvider.otherwise('home');
+}])
+.controller('homeCtrl', ['$scope', '$http',
     function($scope, $http){
-// $scope.food = [];
-//         // $scope.addFoods = function(){
-//         //
-//         // };
     $scope.randomRecipe = function(){
 
         $http({
@@ -59,5 +44,14 @@ angular.module('myApp', ['ui.router'])
             console.log("Fuck");
         });
     };
+}])
+.controller('aboutCtrl', ['$scope',
+function($scope){
+
+}])
+.controller('contactCtrl', ['$scope',
+function($scope){
+
 }]);
+
 
