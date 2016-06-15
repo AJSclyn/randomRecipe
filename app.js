@@ -26,32 +26,53 @@ angular.module('myApp', ['ui.router'])
 
     $urlRouterProvider.otherwise('home');
 }])
-.controller('homeCtrl', ['$scope', '$http',
-    function($scope, $http){
-    $scope.randomRecipe = function(){
+    .controller('homeCtrl', ['$scope', '$http',
+        function($scope, $http){
 
-        $http({
-            method: 'GET',
-            url: 'https://community-food2fork.p.mashape.com/search',
-            params: {key: '', q: $scope.food},
-            headers: {
-                'X-Mashape-Key': ""
+            $scope.foods = [{
+                name: 'beef'
+            }, {
+                name: 'chicken'
             }
-        }).then(function successCallback(result){
-            $scope.swag = result;
+            ];
 
-        }, function errorCallback(){
-            console.log("Fuck");
-        });
-    };
-}])
-.controller('aboutCtrl', ['$scope',
-function($scope){
+            $scope.selection = [];
 
-}])
-.controller('contactCtrl', ['$scope',
-function($scope){
+            $scope.toggleSelection = function toggleSelection(foodName){
+                var idx = $scope.selection.indexOf(foodName);
 
-}]);
+                if(idx > -1){
+                    $scope.selection.splice(idx, 1);
+                }else{
+                    $scope.selection.push(foodName);
+                }
+                $scope.test = $scope.selection.join(" ");
+            };
+
+            $scope.randomRecipe = function(){
+                $http({
+                    method: 'GET',
+                    url: 'https://community-food2fork.p.mashape.com/search',
+                    params: {key: '', q: $scope.test},
+                    headers: {
+                        'X-Mashape-Key': ""
+                    }
+                }).then(function successCallback(result){
+                    $scope.swag = result;
+
+                }, function errorCallback(){
+                    console.log("Fuck");
+                });
+            };
+        }])
+    .controller('aboutCtrl', ['$scope',
+        function($scope){
+
+        }])
+    .controller('contactCtrl', ['$scope',
+        function($scope){
+
+        }]);
+
 
 

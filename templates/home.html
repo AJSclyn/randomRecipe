@@ -1,13 +1,14 @@
 <div>
     <form class="recipeForm" ng-submit="randomRecipe()">
         <label><p>Food Options</p>
-        <input type="checkbox" ng-model="food" ng-true-value="'chicken'" ng-false-value=""/>Chicken <br>
-        <input type="checkbox" ng-model="food" ng-true-value="'beef'" ng-false-value=""/>Beef
+        <div ng-repeat="food in foods">
+            <input type="checkbox" value="{{food.name}}" ng-checked="selection.indexOf(food.name) > -1"
+                   ng-click="toggleSelection(food.name)"/>{{food.name}}
+        </div>
             </label></br>
         <pre ng-repeat="recipes in swag.data.recipes">
             {{recipes.title}}
         </pre>
-        <!--<pre>{{food.beef}}</pre>-->
         <button type="submit">Randomize!</button>
     </form>
 </div>
