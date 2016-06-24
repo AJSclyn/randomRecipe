@@ -1,78 +1,61 @@
-angular.module('myApp', ['ui.router'])
-    
-.config(['$stateProvider','$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
-    $stateProvider.state('home',
-        {
-            url:'/home',
-            templateUrl:'templates/home.html',
-            controller: 'homeCtrl',
-            controllerAs: 'home'
-        })
-        .state('about',
-        {
-            url: '/about',
-            templateUrl: 'templates/about.html',
-            controller: 'aboutCtrl',
-            controllerAs: 'about'
-        })
-        .state('contact',
-        {
-            url: '/contact',
-            templateUrl: 'templates/contact.html',
-            controller: 'contactCtrl',
-            controllerAs: 'contact'
-        });
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-    $urlRouterProvider.otherwise('home');
-}])
-    .controller('homeCtrl', ['$scope', '$http',
-        function($scope, $http){
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
-            $scope.foods = [{
-                name: 'beef'
-            }, {
-                name: 'chicken'
-            }
-            ];
+var app = express();
 
-            $scope.selection = [];
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-            $scope.toggleSelection = function toggleSelection(foodName){
-                var idx = $scope.selection.indexOf(foodName);
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-                if(idx > -1){
-                    $scope.selection.splice(idx, 1);
-                }else{
-                    $scope.selection.push(foodName);
-                }
-                $scope.test = $scope.selection.join(" ");
-            };
+app.use('/', routes);
+app.use('/users', users);
 
-            $scope.randomRecipe = function(){
-                $http({
-                    method: 'GET',
-                    url: 'https://community-food2fork.p.mashape.com/search',
-                    params: {key: '', q: $scope.test},
-                    headers: {
-                        'X-Mashape-Key': ""
-                    }
-                }).then(function successCallback(result){
-                    $scope.swag = result;
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-                }, function errorCallback(){
-                    console.log("Fuck");
-                });
-            };
-        }])
-    .controller('aboutCtrl', ['$scope',
-        function($scope){
+// error handlers
 
-        }])
-    .controller('contactCtrl', ['$scope',
-        function($scope){
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
 
-        }]);
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
-
+module.exports = app;
