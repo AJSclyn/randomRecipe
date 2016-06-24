@@ -12,6 +12,13 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+#nav a:link{
+    text-decoration: none;
+    color: #0c0c0c;
+}
+#nav a:hover{
+    color: #4B946A;
+}
 #nav, #footer{
     background-color: #efefef;
     padding: 10px;
@@ -21,6 +28,9 @@ body {
     justify-content: center;
     list-style: none;
     font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+}
+#nav{
+    height: 500px;
 }
 li{
     display: inline;
