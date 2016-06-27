@@ -2,16 +2,17 @@ angular.module('myApp', ['ui.router'])
 
 .config(['$stateProvider','$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-        $stateProvider.state('home',
-            {
-                url:'/home',
-                templateUrl:'/templates/home.html',
-                controller: 'homeCtrl',
-                controllerAs: 'home'
-            })
+        $stateProvider
+            .state('home',
+                {
+                    url:'/home',
+                    templateUrl:'/templates/home.html',
+                    controller: 'homeCtrl',
+                    controllerAs: 'home'
+                })
             .state('about',
                 {
-                    url: 'templates/about',
+                    url: '/about',
                     templateUrl: '/templates/about.html',
                     controller: 'aboutCtrl',
                     controllerAs: 'about'
@@ -30,7 +31,7 @@ angular.module('myApp', ['ui.router'])
                 controllerAs: 'signIn'
             });
 
-        $urlRouterProvider.otherwise('about');
+        $urlRouterProvider.otherwise('home');
     }])
 .controller('homeCtrl', ['$scope', '$http',
     function($scope, $http){
@@ -82,7 +83,54 @@ angular.module('myApp', ['ui.router'])
 .controller('signInCtrl', ['$scope',
     function($scope){
 
-    }]);
+    }])
+
+.factory('auth', ['$http', '$window', function($http, $window){
+    var auth = {};
+
+    auth.saveToken = function(token){
+        $window.localStorage['token'] = token;
+    };
+
+    auth.getToken = function(){
+        return $window.localStorage['token'];
+    };
+
+    auth.isLoggedIn = function(){
+        var token = auth.getToken();
+        if(token){
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+            return payload.exp = Date.now() / 1000;
+        }else{
+            return false;
+        }
+    };
+
+    auth.currentUser = function(){
+        if(auth.isLoggedIn()){
+            var token  = auth.getToken();
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+            return payload.username;
+        }
+    };
+
+    auth.register = function(user){
+        return $http.post('/signIn', user).success(function(data){
+            auth.saveToken(data.token);
+        });
+    };
+    auth.login = function(user){
+        return $http.post('/signIn', user).success(function(data){
+            auth.saveToken(data.token);
+        });
+    };
+    auth.logOut = function(){
+        $window.localStorage.removeItem('token');
+    };
+    return auth;
+}]);
 
 
 
