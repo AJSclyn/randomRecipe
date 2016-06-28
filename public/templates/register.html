@@ -1,0 +1,11 @@
+<form ng-submit="register()">
+    <h3>Register</h3>
+    <div ng-show="error">
+        <span>{{ error.message }}</span>
+    </div>
+    <div>
+        <input type="text" placeholder="Username" ng-model="user.username">Username</input>
+        <input type="password" placeholder="Password" ng-model="user.password">Password</input>
+    </div>
+    <button type="submit">Register</button>
+</form>

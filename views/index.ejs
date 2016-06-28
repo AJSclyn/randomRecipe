@@ -7,18 +7,22 @@
         <!--Load angularjs-->
         <script src="/bower_components/angular/angular.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
-        <script src="/javascripts/app.js"></script>
+        <script src="/javascripts/angularApp.js"></script>
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
     </header>
     <body ng-app="myApp">
         <div id="header">
             <h1>Random Recipe Generator!</h1>
-            <div id="nav">
+            <div ng-controller="NavCtrl" id="nav">
                 <ul>
+                    <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+                    <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
                     <li><a ui-sref="home">Home</a></li>
+                    <li><a ui-sref="generator">Generator</a></li>
                     <li><a ui-sref="about">About</a></li>
                     <li><a ui-sref="contact">Contact</a></li>
-                    <li><a ui-sref="signIn">Sign-In</a></li>
+                    <li><a ng-hide="isLoggedIn()" ui-sref="register">Register</a></li>
+                    <li><a ng-hide="isLoggedIn()" ui-sref="signIn">Sign-In</a></li>
                 </ul>
             </div>
         </div>

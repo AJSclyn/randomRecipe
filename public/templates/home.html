@@ -1,15 +1,4 @@
 <div>
-    <form class="recipeForm" ng-submit="randomRecipe()">
-        <label><p>Food Options</p>
-        <div ng-repeat="food in foods">
-            <input type="checkbox" value="{{food.name}}" ng-checked="selection.indexOf(food.name) > -1"
-                   ng-click="toggleSelection(food.name)"/>{{food.name}}
-        </div>
-            </label></br>
-        <pre ng-repeat="recipes in swag.data.recipes">
-            {{recipes.title}}
-        </pre>
-        <button type="button">Randomize!</button>
-    </form>
+    <p>This is the home page obvi.</p>
 </div>
 

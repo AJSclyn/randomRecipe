@@ -1,56 +1,10 @@
-<div class="pageHeader">Form Validator</div>
+<div class="pageHeader">Login</div>
 
 <div class="login">
-    <form name="loginForm" ng-submit="submitForm(user)" ng-controller="homeCtrl" novalidate>
-        <input ng-model="user.email" type="email" required>
+    <form name="loginForm" ng-submit="logIn()" ng-controller="homeCtrl" novalidate>
+        <input ng-model="user.username" type="email" required>
         <input ng-model="user.password" type="password" required>
-        <button type="submit" ng-disabled="loginForm.$invalid">Submit</button>
+        <button type="submit">Log In</button>
 
     </form>
-</div>
-<nav class="main-nav">
-    <ul>
-        <!-- all your main menu links here -->
-        <li><a class="cd-signin" href="#0">Sign in</a></li>
-        <li><a class="cd-signup" href="#0">Sign up</a></li>
-    </ul>
-</nav>
-
-<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
-
-        <ul class="cd-switcher">
-            <li><a href="#0">Sign in</a></li>
-            <li><a href="#0">New account</a></li>
-        </ul>
-
-    </div>
-</div>
-
-<div class="cd-user-modal">
-    <div class="cd-user-modal-container">
-
-        <!-- switcher tab here -->
-
-        <div id="cd-login">
-
-            <!-- form here -->
-
-            <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
-        </div>
-
-        <div id="cd-signup">
-
-            <!-- form here -->
-
-        </div>
-
-        <div id="cd-reset-password">
-
-            <!-- form here -->
-
-            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
-        </div>
-    </div>
-    <a href="#0" class="cd-close-form">Close</a>
 </div>
