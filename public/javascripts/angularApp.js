@@ -91,6 +91,7 @@ angular.module('myApp', ['ui.router'])
             return $http.post('/register', user).success(function(data){
                 auth.saveToken(data.token);
             });
+            console.log("after");
         };
         auth.login = function(user){
             return $http.post('/login', user).success(function(data){
